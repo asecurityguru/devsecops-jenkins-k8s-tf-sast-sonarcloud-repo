@@ -302,19 +302,17 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--# Changes for Software Composition Analysis Scan using Snyk
-#By ASecurityGuru
--->
-    <plugin>
-      <groupId>io.snyk</groupId>
-      <artifactId>snyk-maven-plugin</artifactId>
-      <version>2.0.0</version>
-      <inherited>false</inherited>
-      <configuration>
-        <org>asecurityguru</org>
-      </configuration>
-    </plugin>
-<!-- Snyk Changes for SCA Ends Here -->
+			<!--# Changes for Software Composition Analysis Scan using Snyk -->
+			<plugin>
+				<groupId>io.snyk</groupId>
+				<artifactId>snyk-maven-plugin</artifactId>
+				<version>2.0.0</version>
+				<inherited>false</inherited>
+				<configuration>
+					<org>LuciaBortolozzi</org>
+				</configuration>
+			</plugin>
+			<!-- Snyk Changes for SCA Ends Here -->
 		</plugins>
 		<pluginManagement>
 			<plugins>
