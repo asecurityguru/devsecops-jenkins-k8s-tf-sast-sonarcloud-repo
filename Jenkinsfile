@@ -16,5 +16,24 @@ pipeline {
 				}
 			}
     }
-  }
+
+	stage('Build') {
+            steps {
+               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+                 script {
+                    app =  docker.build("lnb")
+                 }
+               }
+            }
+    }
+
+	stage('Push') {
+            steps {
+                script {
+                    docker.withRegistry('https://363981201235.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:aws-credentials') {
+                        app.push("latest")
+                    }
+                }
+            }
+    }
 }
