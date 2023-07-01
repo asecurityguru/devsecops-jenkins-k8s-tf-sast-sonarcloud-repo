@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appbuggy-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appbuggy
+  template:
+    metadata:
+      labels:
+        app: appbuggy
+    spec:
+      containers:
+        - name: appbuggy
+          image: 363981201235.dkr.ecr.us-west-2.amazonaws.com/lnb
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+# service type loadbalancer       
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: appbuggy
+    k8s-app: appbuggy
+  name: appbuggy
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: appbuggy
